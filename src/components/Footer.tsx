@@ -108,7 +108,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-3 text-gray-500 dark:text-gray-600 text-sm">
                 <Phone className="w-4 h-4 text-red-600 flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 9498330139</span>
               </li>
             </ul>
           </motion.div>

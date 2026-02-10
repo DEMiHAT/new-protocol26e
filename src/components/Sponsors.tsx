@@ -232,15 +232,16 @@ export function Sponsors() {
               <p className="text-gray-500 text-sm mb-4">
                 Join the grid and power the future of technical innovation
               </p>
-              <motion.button
+              <motion.a
+                href="mailto:ait@svce.ac.in"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-black uppercase tracking-wider overflow-hidden"
+                className="group relative inline-block px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-black uppercase tracking-wider overflow-hidden"
               >
                 <div className="absolute inset-0 bg-cyan-400/20 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <span className="relative">Contact Us</span>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform" />
-              </motion.button>
+              </motion.a>
 
               {/* Corner Accents */}
               <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red-600" />
