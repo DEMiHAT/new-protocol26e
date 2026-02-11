@@ -17,7 +17,7 @@ export function AboutSection() {
   ];
 
   return (
-    <section className="relative bg-black dark:bg-gray-50 py-24 px-4 overflow-hidden transition-colors duration-300">
+    <section id = "about" className="relative bg-black dark:bg-gray-50 py-24 px-4 overflow-hidden transition-colors duration-300">
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" 

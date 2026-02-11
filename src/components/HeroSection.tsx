@@ -134,7 +134,7 @@ export function HeroSection() {
           transition={{ duration: 0.8, delay: 0.8 }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+          onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           className="group relative px-8 py-4 bg-red-600 text-white overflow-hidden font-black tracking-wider uppercase cursor-pointer"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-red-700 via-red-600 to-red-700 bg-[length:200%_100%] animate-[shimmer_2s_infinite]" />
@@ -151,7 +151,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-8 md:gap-16"
+          className="mt-10 flex gap-8 md:gap-16 md:absolute md:bottom-12 md:left-1/2 md:-translate-x-1/2"
         >
           {[
             { label: "EVENTS", value: "06" },
