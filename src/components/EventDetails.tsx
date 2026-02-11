@@ -192,7 +192,7 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
             </div>
             <div className="min-w-0">
               <span className="text-gray-400 text-[10px] sm:text-xs block uppercase tracking-wider">
-                Coordinator
+                Coordinators
               </span>
               <div className="mt-1 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {event.coordinators.map((coordinator) => (
