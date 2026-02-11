@@ -1,6 +1,7 @@
-import { motion, AnimatePresence } from "motion/react";
-import { X, Users, MapPin, User, ExternalLink } from "lucide-react";
+import { motion } from "motion/react";
+import { Users } from "lucide-react";
 import { useState } from "react";
+import { EventDetails } from "./EventDetails";
 
 interface Event {
   code: string;
@@ -87,6 +88,7 @@ export function EventsGrid() {
   ];
 
   return (
+    <>
     <section id="events" className="relative bg-black dark:bg-gray-50 py-24 px-4 overflow-hidden transition-colors duration-300">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 opacity-5">
@@ -240,136 +242,15 @@ export function EventsGrid() {
 
         
       </div>
-
-      {/* Event Details Modal */}
-      <AnimatePresence>
-        {selectedEvent && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm"
-            onClick={() => setSelectedEvent(null)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-              className="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto overflow-x-hidden bg-gradient-to-br from-gray-900 via-black to-gray-900 dark:from-white dark:via-gray-100 dark:to-white border border-gray-800 dark:border-gray-300"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal Header */}
-              <div className="sticky top-0 bg-black/90 dark:bg-white/90 backdrop-blur-sm border-b border-gray-800 dark:border-gray-300 p-4 sm:p-6 z-10">
-                {/* <div className="flex items-center justify-between gap-3"> */}
-                  <div className="p-6">
-                    {/* Event Code Badge */}
-                    <div className="flex items-center justify-between ">
-                        <div className="inline-block mb-2 sm:mb-3">
-                        <div className="flex items-center gap-2 border-2 border-red-600 px-3 py-1 bg-red-600/20">
-                          <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
-                          <span className="text-red-500 font-black tracking-wider text-sm">
-                            {selectedEvent.code}
-                          </span>
-                        </div>
-                      </div>
-                      <button
-                    onClick={() => setSelectedEvent(null)}
-                    className="p-2 border border-gray-700 dark:border-gray-400 hover:border-red-600 dark:hover:border-red-500 hover:bg-red-600/10 transition-colors"
-                  >
-                    <X className="w-5 h-5 text-gray-400 dark:text-gray-600 hover:text-red-500" />
-                  </button>
-                    </div>
-                    
-                    <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white dark:text-gray-900 uppercase tracking-tight">
-                      {selectedEvent.title}
-                    </h3>
-                    <p className="text-cyan-400 text-xs sm:text-sm mt-1 font-medium">
-                      {selectedEvent.subtitle}
-                    </p>
-                  </div>
-                  
-                  {/* Close Button */}
-                {/* </div> */}
-              </div>
-
-              {/* Modal Content */}
-              <div className="p-6 sm:p-6">
-                {/* Divider */}
-                <div className="h-[2px] w-full bg-gradient-to-r from-red-600 to-cyan-400 mb-4 sm:mb-6" />
-
-                {/* Event Info Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
-                  {/* Team Size */}
-                  <div className="flex items-center gap-3 px-3 sm:px-4 py-3 sm:py-4 bg-cyan-400/10 border border-cyan-400/30 overflow-hidden">
-                    <Users className="w-5 h-5 text-cyan-400 shrink-0" />
-                    <div className="min-w-0">
-                      <span className="text-gray-500 text-xs block">Team Size</span>
-                      <span className="text-cyan-400 font-black tracking-wider text-sm">
-                        {selectedEvent.teamSize}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Venue */}
-                  <div className="flex items-center gap-3 px-3 sm:px-4 py-3 sm:py-4 bg-red-600/10 border border-red-600/30 overflow-hidden">
-                    <MapPin className="w-5 h-5 text-red-500 shrink-0" />
-                    <div className="min-w-0">
-                      <span className="text-gray-500 text-xs block">Venue</span>
-                      <span className="text-red-500 font-black tracking-wider text-sm">
-                        {selectedEvent.venue}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Coordinator */}
-                  <div className="flex items-center gap-3 px-3 sm:px-4 py-3 sm:py-4 bg-gray-800/50 dark:bg-gray-200/50 border border-gray-700 dark:border-gray-400 overflow-hidden">
-                    <User className="w-5 h-5 text-gray-400 dark:text-gray-600 shrink-0" />
-                    <div className="min-w-0">
-                      <span className="text-gray-500 text-xs block">Coordinator</span>
-                      <span className="text-white dark:text-gray-900 font-bold tracking-wide text-xs sm:text-sm break-words">
-                        {selectedEvent.coordinator}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Description */}
-                <div className="mb-6">
-                  <h4 className="text-red-500 font-black tracking-wider text-sm mb-3 uppercase">
-                    Event Description
-                  </h4>
-                  <p className="text-gray-400 dark:text-gray-600 text-sm sm:text-base leading-relaxed text-justify break-words">
-                    {selectedEvent.description}
-                  </p>
-                </div>
-
-                {/* Register Button */}
-                <a
-                  href={selectedEvent.registerLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block w-full text-center py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 border border-red-500 text-white font-black tracking-wider text-sm sm:text-base uppercase transition-all duration-300 group"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    REGISTER NOW
-                    <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </a>
-
-                {/* Racing Stripe Accent */}
-                <div className="h-1 w-full bg-gradient-to-r from-red-600 via-cyan-400 to-transparent mt-6" />
-              </div>
-
-              {/* Corner Brackets */}
-              <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-red-600/50" />
-              <div className="absolute top-2 right-2 w-6 h-6 border-t-2 border-r-2 border-cyan-400/50" />
-              <div className="absolute bottom-2 left-2 w-6 h-6 border-b-2 border-l-2 border-cyan-400/50" />
-              <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-red-600/50" />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
+
+    {/* Full-Page Event Details */}
+    {selectedEvent && (
+      <EventDetails
+        event={selectedEvent}
+        onBack={() => setSelectedEvent(null)}
+      />
+    )}
+    </>
   );
 }
