@@ -18,7 +18,15 @@ interface Event {
   registerLink: string;
 }
 
-export function EventsGrid() {
+interface EventsGridProps {
+  onEventDetailsOpen?: () => void;
+  onEventDetailsClose?: () => void;
+}
+
+export function EventsGrid({
+  onEventDetailsOpen,
+  onEventDetailsClose,
+}: EventsGridProps) {
   const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
   const events: Event[] = [
@@ -40,7 +48,7 @@ export function EventsGrid() {
       code: "E02", 
       position: 2,
       title: "Final Lap Escape",
-      subtitle: "Tech Puzzle Challenge",
+      // Duplicate export removed
       description: "Participants compete in teams through a sequence of interconnected tech puzzles, where solving one challenge unlocks the next clue or digital access toward the final escape. The challenges include debugging buggy code snippets (in C, Python, Java, or JavaScript) to uncover passwords or keys, decrypting messages using ciphers like Caesar, substitution, binary, or Base64 to reveal locations or locks, and solving logic puzzles that gradually increase in technical complexity—keeping the experience engaging for both beginners and experienced coders.",
       teamSize: "2-3 members",
       venue: "5th Block Classroom 501",
@@ -170,7 +178,10 @@ export function EventsGrid() {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group relative cursor-pointer"
-              onClick={() => setSelectedEvent(event)}
+              onClick={() => {
+                setSelectedEvent(event);
+                onEventDetailsOpen?.();
+              }}
             >
               {/* Card Container */}
               <div className="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 dark:from-white dark:via-gray-100 dark:to-white border border-gray-800 dark:border-gray-300 overflow-hidden">
@@ -269,7 +280,10 @@ export function EventsGrid() {
     {selectedEvent && (
       <EventDetails
         event={selectedEvent}
-        onBack={() => setSelectedEvent(null)}
+        onBack={() => {
+          setSelectedEvent(null);
+          onEventDetailsClose?.();
+        }}
       />
     )}
     </>
