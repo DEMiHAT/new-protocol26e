@@ -13,7 +13,7 @@ export function Timeline() {
       sector: "S1",
       time: "09:30 AM",
       title: "Inauguration of PROTOCOL 26E",
-      location: "Library Seminar Hall"
+      location: "Function Hall 3rd Floor"
     },
     {
       sector: "S2",
@@ -26,7 +26,7 @@ export function Timeline() {
       sector: "S3",
       time: "2:00 PM",
       title: "Valedictory Ceremony",
-      location: "Library Seminar Hall"
+      location: "Function Hall 3rd Floor"
     }
   ];
 
