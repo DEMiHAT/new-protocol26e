@@ -31,6 +31,10 @@ export default function App() {
         />
         <Timeline />
         <Coordinators />
+        <Footer
+          onEventDetailsOpen={() => setIsEventDetailsOpen(true)}
+          onEventDetailsClose={() => setIsEventDetailsOpen(false)}
+        />
       </div>
 
       {/* Scroll to Top Button */}

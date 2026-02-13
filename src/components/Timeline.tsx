@@ -31,7 +31,7 @@ export function Timeline() {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-gray-950 to-black dark:from-gray-50 dark:via-white dark:to-gray-50 py-24 overflow-hidden transition-colors duration-300">
+    <section id="timeline" className="relative bg-gradient-to-b from-black via-gray-950 to-black dark:from-gray-50 dark:via-white dark:to-gray-50 py-24 overflow-hidden transition-colors duration-300">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
         <img

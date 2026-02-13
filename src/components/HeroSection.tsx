@@ -3,7 +3,7 @@ import { ChevronRight } from "lucide-react";
 
 export function HeroSection() {
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black dark:bg-white">
+    <section id="home" className="relative h-screen w-full overflow-hidden bg-black dark:bg-white">
       {/* Background Video with Overlay */}
       <div className="absolute inset-0">
         <video
