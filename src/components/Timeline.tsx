@@ -13,7 +13,7 @@ export function Timeline() {
       sector: "S1",
       time: "09:30 AM",
       title: "Inauguration of PROTOCOL 26E",
-      location: "Library Seminar Hall"
+      location: "Function Hall 3rd Floor"
     },
     {
       sector: "S2",
@@ -26,12 +26,12 @@ export function Timeline() {
       sector: "S3",
       time: "2:00 PM",
       title: "Valedictory Ceremony",
-      location: "Library Seminar Hall"
+      location: "Function Hall 3rd Floor"
     }
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-gray-950 to-black dark:from-gray-50 dark:via-white dark:to-gray-50 py-24 overflow-hidden transition-colors duration-300">
+    <section id="timeline" className="relative bg-gradient-to-b from-black via-gray-950 to-black dark:from-gray-50 dark:via-white dark:to-gray-50 py-24 overflow-hidden transition-colors duration-300">
       {/* Background Effects */}
       <div className="absolute inset-0 opacity-20">
         <img

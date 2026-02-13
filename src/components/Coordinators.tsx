@@ -42,7 +42,7 @@ export function Coordinators() {
   ];
 
   return (
-    <section className="relative bg-black py-24 px-4 overflow-hidden">
+    <section id="team" className="relative bg-black py-24 px-4 overflow-hidden">
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-10">
         <div

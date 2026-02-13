@@ -27,7 +27,7 @@ export function Sponsors() {
   ];
 
   return (
-    <section className="relative bg-gradient-to-b from-black via-gray-950 to-black py-24 px-4 overflow-hidden">
+    <section id="sponsors" className="relative bg-gradient-to-b from-black via-gray-950 to-black py-24 px-4 overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/20 rounded-full blur-[150px]" />
