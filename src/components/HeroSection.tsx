@@ -146,6 +146,15 @@ export function HeroSection() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform" />
         </motion.button>
 
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-6 text-gray-400 dark:text-gray-600 tracking-[0.2em] text-sm md:text-base font-bold uppercase"
+        >
+          21<sup>st</sup> February 2026
+        </motion.div>
+
         {/* Race Stats
         <motion.div
           initial={{ opacity: 0, y: 20 }}
