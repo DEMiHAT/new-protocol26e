@@ -21,9 +21,11 @@ const studentCoordinators = [
 ];
 
 const socialLinks = [
-  { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/ait_svce/?hl=en" },
-  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/company/association-of-information-technologists/" },
-  { icon: Mail, label: "Email", href: "mailto:ait@svce.ac.in" },
+  { icon: Instagram, label: "AIT Instagram", handle: "@ait_svce", href: "https://www.instagram.com/ait_svce/?hl=en" },
+  { icon: Instagram, label: "CSI Instagram", handle: "@svce_csi", href: "https://www.instagram.com/svce_csi/" },
+  { icon: Instagram, label: "CyberNova Instagram", handle: "@cybernova_svce", href: "https://www.instagram.com/cybernova_svce" },
+  { icon: Linkedin, label: "LinkedIn", handle: "AIT LinkedIn", href: "https://www.linkedin.com/company/association-of-information-technologists/" },
+  { icon: Mail, label: "Email", handle: "ait@svce.ac.in", href: "mailto:ait@svce.ac.in" },
 ];
 
 interface FooterProps {
@@ -186,18 +188,24 @@ export function Footer({ onEventDetailsOpen, onEventDetailsClose }: FooterProps)
               <h5 className="mb-3 text-xs font-black uppercase tracking-wider text-cyan-400 dark:text-cyan-600">
                 Follow Us
               </h5>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-col gap-2">
                 {socialLinks.map((social) => (
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="group relative flex h-11 w-11 items-center justify-center border-2 border-gray-800 bg-gray-900/50 transition-all duration-300 hover:border-cyan-400 hover:bg-cyan-400/10 dark:border-gray-300 dark:bg-white/80 dark:hover:border-cyan-500 dark:hover:bg-cyan-500/20"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ x: 4 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="group flex items-center gap-3 rounded px-2 py-1.5 transition-all duration-300 hover:bg-gray-900/60 dark:hover:bg-gray-200/60"
                     aria-label={social.label}
                   >
-                    <social.icon className="h-5 w-5 text-gray-600 transition-colors group-hover:text-cyan-400 dark:text-gray-700 dark:group-hover:text-cyan-500" />
-                    <div className="pointer-events-none absolute -inset-[2px] bg-cyan-400/0 opacity-0 blur-sm transition-all duration-300 group-hover:bg-cyan-400/20 group-hover:opacity-100" />
+                    <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-gray-800 bg-gray-900/50 transition-all duration-300 group-hover:border-cyan-400 group-hover:bg-cyan-400/10 dark:border-gray-300 dark:bg-white/80 dark:group-hover:border-cyan-500">
+                      <social.icon className="h-4 w-4 text-gray-600 transition-colors group-hover:text-cyan-400 dark:text-gray-700 dark:group-hover:text-cyan-500" />
+                    </div>
+                    <span className="text-xs text-gray-500 transition-colors group-hover:text-cyan-400 dark:text-gray-600 dark:group-hover:text-cyan-500">
+                      {social.handle}
+                    </span>
                   </motion.a>
                 ))}
               </div>
