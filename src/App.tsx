@@ -6,6 +6,7 @@ import { Timeline } from "./components/Timeline";
 import { Coordinators } from "./components/Coordinators";
 import { Sponsors } from "./components/Sponsors";
 import { Footer } from "./components/Footer";
+import { ClockCounter } from "./components/ClockCounter";
 import { ThemeProvider } from "./hooks/useTheme";
 import { ThemeToggle } from "./components/ThemeToggle";
 
@@ -25,6 +26,7 @@ export default function App() {
       <div className="relative z-10">
         <HeroSection />
         <AboutSection />
+        <ClockCounter />
         <EventsGrid
           onEventDetailsOpen={() => setIsEventDetailsOpen(true)}
           onEventDetailsClose={() => setIsEventDetailsOpen(false)}

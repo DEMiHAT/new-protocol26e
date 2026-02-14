@@ -146,7 +146,7 @@ export function HeroSection() {
           <div className="absolute bottom-0 left-0 right-0 h-1 bg-cyan-400 transform scale-x-0 group-hover:scale-x-100 transition-transform" />
         </motion.button>
 
-        {/* Race Stats */}
+        {/* Race Stats
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -166,7 +166,7 @@ export function HeroSection() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </motion.div> */}
       </div>
 
       {/* Corner Brackets */}

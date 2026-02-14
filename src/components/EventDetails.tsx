@@ -37,6 +37,20 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
     scrollRef.current?.scrollTo(0, 0);
   }, [event]);
 
+  useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousHtmlOverflow = document.documentElement.style.overflow;
+
+    // Keep scrolling only inside the event details container.
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousHtmlOverflow;
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -99,7 +113,7 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
           className="mb-6 sm:mb-8"
         >
           {/* Breadcrumb */}
-          <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400 text-xs mb-3 sm:mb-4">
+          <div className="flex items-center gap-1 text-gray-600 dark:text-gray-400 text-sm mb-3 sm:mb-4">
             <span className="hover:text-cyan-400 cursor-pointer" onClick={onBack}>
               Events
             </span>
@@ -122,7 +136,7 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
-                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white dark:text-gray-900 uppercase tracking-tight leading-none mb-3 sm:mb-4"
+                className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white dark:text-gray-900 uppercase tracking-wider leading-none mb-3 sm:mb-4"
                 style={{ fontFamily: "Impact, 'Arial Black', sans-serif" }}
               >
                 {event.title}
@@ -148,11 +162,35 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
           />
         </motion.div>
 
-        {/* Info Cards Row */}
+        {/* Description Section */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
+          className="mb-6 sm:mb-8"
+        >
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+            <div className="h-5 sm:h-6 w-1 bg-red-600" />
+            <h2 className="text-red-500 font-black tracking-wider text-sm sm:text-base uppercase">
+              Event Description
+            </h2>
+          </div>
+
+          <div className="bg-gray-900/50 border border-gray-800 p-6 sm:p-8 md:p-10 border-l-2 border-l-red-600">
+            <p
+              className="text-white text-md sm:text-base leading-relaxed break-words"
+              style={{ fontFamily: "'Google Sans Flex', sans-serif" }}
+            >
+              {event.description}
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Info Cards Row */}
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
           className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8"
         >
           {/* Team Size */}
@@ -198,37 +236,21 @@ export function EventDetails({ event, onBack }: EventDetailsProps) {
                 {event.coordinators.map((coordinator) => (
                   <div
                     key={`${coordinator.name}-${coordinator.phone}`}
-                    className="flex flex-col text-white font-black tracking-wider text-sm sm:text-base break-words"
+                    className="flex items-start gap-2 text-white font-black tracking-wider text-sm sm:text-base break-words"
                   >
-                    <span>{coordinator.name}</span>
-                    <span className="text-gray-300 text-xs sm:text-sm">
-                      {coordinator.phone}
-                    </span>
+                    <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-orange-400/60 bg-orange-500/15">
+                      <User className="h-3.5 w-3.5 text-orange-300" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span>{coordinator.name}</span>
+                      <span className="text-gray-300 text-xs sm:text-sm">
+                        {coordinator.phone}
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </motion.div>
-
-        {/* Description Section */}
-        <motion.div
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mb-6 sm:mb-8"
-        >
-          <div className="flex items-center gap-3 mb-3 sm:mb-4">
-            <div className="h-5 sm:h-6 w-1 bg-red-600" />
-            <h2 className="text-red-500 font-black tracking-wider text-sm sm:text-base uppercase">
-              Event Description
-            </h2>
-          </div>
-
-          <div className="bg-gray-900/50 border border-gray-800 p-6 sm:p-8 md:p-10 border-l-2 border-l-red-600">
-            <p className="text-white text-sm sm:text-base leading-relaxed break-words">
-              {event.description}
-            </p>
           </div>
         </motion.div>
 

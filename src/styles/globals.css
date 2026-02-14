@@ -264,3 +264,102 @@ html {
   outline: 2px solid #06b6d4;
   outline-offset: 2px;
 }
+
+/* Clock-of-Clocks Counter Styles */
+.coc-clock {
+  --cell-size: 3rem;
+  --cell-border-size: max(calc(var(--cell-size) / 16), 1.5px);
+  --cell-bg: oklch(20% 0 0);
+  --cell-border: oklch(30% 0 0);
+  --hand-color: #06b6d4;
+  --field-gap: 2rem;
+
+  display: flex;
+  gap: var(--field-gap);
+  justify-content: center;
+  align-items: center;
+}
+
+.coc-pair {
+  display: flex;
+  gap: 0.125rem;
+}
+
+.coc-digit {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  gap: 0.125rem;
+}
+
+.coc-cell {
+  height: var(--cell-size);
+  width: var(--cell-size);
+  position: relative;
+  background-color: var(--cell-bg);
+  border: var(--cell-border-size) solid var(--cell-border);
+  border-radius: 1000px;
+}
+
+.coc-hand {
+  width: 50%;
+  height: var(--cell-border-size);
+  background-color: var(--hand-color);
+  position: absolute;
+  transform-origin: center left;
+  top: 50%;
+  left: 50%;
+  translate: 0% -50%;
+  rotate: 135deg;
+  transition: rotate 250ms;
+  border-radius: 9999px;
+}
+
+.coc-dot {
+  width: var(--cell-border-size);
+  height: var(--cell-border-size);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  background-color: var(--hand-color);
+  border-radius: 1000px;
+}
+
+.coc-label-group {
+  width: calc(var(--cell-size) * 8 + var(--field-gap));
+  text-align: center;
+}
+
+/* Dark mode (light theme) overrides */
+.dark .coc-clock {
+  --cell-bg: oklch(93% 0 0);
+  --cell-border: oklch(82% 0 0);
+  --hand-color: #111827;
+}
+
+@media (max-width: 1440px) {
+  .coc-clock {
+    --cell-size: 2rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .coc-clock {
+    --field-gap: 1rem;
+    --cell-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .coc-clock {
+    --field-gap: 0.5rem;
+    --cell-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coc-clock {
+    --cell-size: 0.75rem;
+  }
+}
