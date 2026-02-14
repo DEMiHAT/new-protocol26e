@@ -60,11 +60,29 @@ const getCountdown = (): { days: string; hours: string; minutes: string; seconds
   };
 };
 
-/* ── Responsive sizing — always fits single row on any screen ── */
-const CELL_SIZE = "clamp(0.5rem, 2.2vw, 2.8rem)";
-const BORDER_SIZE = "max(1px, calc(clamp(0.5rem, 2.2vw, 2.8rem) / 14))";
-const GAP = "clamp(1px, 0.15vw, 2px)";
-const FIELD_GAP = "clamp(0.25rem, 1.2vw, 1.5rem)";
+/* ── Sizing uses CSS vars set per breakpoint ── */
+const CELL_SIZE = "var(--coc-cell)";
+const BORDER_SIZE = "var(--coc-border)";
+const GAP = "var(--coc-gap)";
+const FIELD_GAP = "var(--coc-field-gap)";
+
+/* Injected once via <style> in the component */
+const COC_STYLES = `
+  .coc-root {
+    --coc-cell: clamp(1.6rem, 5vw, 2.2rem);
+    --coc-border: max(1.5px, calc(var(--coc-cell) / 14));
+    --coc-gap: 2px;
+    --coc-field-gap: 0.75rem;
+  }
+  @media (min-width: 768px) {
+    .coc-root {
+      --coc-cell: clamp(1rem, 2.2vw, 2.8rem);
+      --coc-border: max(1.5px, calc(var(--coc-cell) / 14));
+      --coc-gap: clamp(1px, 0.15vw, 2px);
+      --coc-field-gap: clamp(0.5rem, 1.2vw, 1.5rem);
+    }
+  }
+`;
 
 /* ── Theme colors (cyan + white, red accent) ── */
 const HAND_COLOR = "#06b6d4";        /* cyan-400 — primary hands */
@@ -152,7 +170,7 @@ function CountdownField({ value, label }: { value: string; label: string }) {
       </div>
       <span
         style={{
-          fontSize: "clamp(0.4rem, 1vw, 0.875rem)",
+          fontSize: "clamp(0.65rem, 1.2vw, 0.875rem)",
           letterSpacing: "0.15em",
           fontWeight: 700,
           color: "#9ca3af",
@@ -218,7 +236,8 @@ export function ClockCounter() {
   }, []);
 
   return (
-    <section className="relative bg-black dark:bg-gray-50 py-8 md:py-12 overflow-hidden transition-colors duration-300">
+    <section className="coc-root relative bg-black dark:bg-gray-50 py-8 md:py-12 overflow-hidden transition-colors duration-300">
+      <style>{COC_STYLES}</style>
       {/* Grid Background */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -262,8 +281,8 @@ export function ClockCounter() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex justify-center"
         >
-          {/* Always single row, scales down via clamp() cell sizes */}
-          <div className="flex items-start justify-center" style={{ gap: FIELD_GAP }}>
+          {/* Mobile: stacked column | md+: single row */}
+          <div className="flex flex-col md:flex-row items-center md:items-start justify-center" style={{ gap: FIELD_GAP }}>
             <CountdownField value={countdown.days} label="DAYS" />
             <CountdownField value={countdown.hours} label="HOURS" />
             <CountdownField value={countdown.minutes} label="MINUTES" />
